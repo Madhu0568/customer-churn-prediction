@@ -6,6 +6,8 @@ from pathlib import Path
 import joblib
 import pandas as pd
 
+from .data_preprocessing import engineer_features
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -25,11 +27,13 @@ def main() -> None:
         model_path = ROOT / model_path
     if not output_path.is_absolute():
         output_path = ROOT / output_path
+    if not input_path.is_file():
+        raise FileNotFoundError(f"Input CSV not found: {input_path}")
     if not model_path.is_file():
         raise FileNotFoundError("Trained model not found. Run python -m src.train first.")
 
     customers = pd.read_csv(input_path)
-    customers.columns = [str(c).strip().replace(" ", "_") for c in customers.columns]
+    customers = engineer_features(customers)
     customers = customers.drop(columns=["Churn", "customerID"], errors="ignore")
     model = joblib.load(model_path)
     labels = model.predict(customers)
