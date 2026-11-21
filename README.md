@@ -63,7 +63,7 @@ The training workflow:
 8. Evaluates models on a held-out test set with accuracy, precision, recall, F1-score, ROC-AUC, and a confusion matrix.
 9. Saves EDA charts, model metrics, and the best cross-validation model.
 
-Preprocessing is fitted on training data only to reduce data leakage. Model selection is based on cross-validation rather than the held-out test score.
+The same feature engineering function is reused during prediction to keep training and inference columns consistent. Preprocessing is fitted on training data only to reduce data leakage. Model selection is based on cross-validation rather than the held-out test score.
 
 ## Predict with the saved model
 
@@ -71,7 +71,7 @@ Preprocessing is fitted on training data only to reduce data leakage. Model sele
 python -m src.predict --input data/new_customers.csv --output reports/predictions.csv
 ```
 
-The input CSV should contain the same customer feature columns as the training dataset (the `Churn` target is not required). The `customerID` column is optional and is ignored.
+The input CSV should contain the same original customer feature columns as the training dataset (the `Churn` target is not required). The `customerID` column is optional and is ignored.
 
 ## Optional Streamlit app
 
