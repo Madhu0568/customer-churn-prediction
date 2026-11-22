@@ -116,6 +116,23 @@ The input CSV should contain the same original customer feature columns as the t
 - `reports/metrics.json` and `reports/roc_curves.png` — model evaluation.
 - `models/churn_model.joblib` — fitted preprocessing and prediction pipeline.
 
+## Run the app from VS Code terminal
+
+Open the project folder in VS Code, open **Terminal → New Terminal**, and run:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+streamlit run app.py
+```
+
+After Streamlit starts, the terminal displays the local app address:
+
+**Local URL:** http://localhost:8501
+
+Press `Ctrl + C` in the terminal to stop the app.
+
+**Deployed app:** [Customer Churn Insights ML](https://customer-churn-insights-ml.streamlit.app/)
+
 ## Notes
 
 - The target is `Churn` (Yes/No).
