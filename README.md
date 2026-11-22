@@ -2,6 +2,29 @@
 
 An end-to-end machine learning project that predicts whether a telecom customer is likely to leave a service. The workflow covers data inspection, cleaning, feature engineering, exploratory analysis, model training, evaluation, and reusable model artifacts.
 
+## Live application
+
+**Try the deployed app:** [Customer Churn Insights ML](https://customer-churn-insights-ml.streamlit.app/)
+
+Upload a telecom customer CSV to view predicted churn labels, churn probabilities, a prediction summary, and download the results.
+
+## Application preview
+
+The deployed Streamlit application provides:
+- CSV upload for telecom customer records
+- A prediction summary showing the number of customers processed, predicted churn count, and average churn probability
+- A customer-level results table with actual churn (when included in the input), predicted churn, and churn probability
+- A downloadable predictions CSV
+
+### Verified deployment example
+
+The IBM Telco sample dataset was processed successfully in the deployed app:
+- **Customers processed:** 7,043
+- **Predicted churn:** 2,885
+- **Average churn probability:** 41.4%
+
+These are example outputs from one run on the sample dataset, not model accuracy metrics.
+
 ## Project structure
 
 ```text
@@ -26,10 +49,7 @@ customer-churn-prediction/
 └── README.md
 ```
 
-
 ## Streamlit application
-
-The project includes an interactive Streamlit interface. Users can upload a CSV of telecom customer records, view the predicted churn status and churn probability for each customer, review a prediction summary, and download the results as a CSV file.
 
 Run the application locally:
 
@@ -38,8 +58,6 @@ streamlit run app.py
 ```
 
 If the trained model is not present, the application downloads the public IBM Telco sample dataset and trains the model automatically on first startup. This allows a fresh deployment to start without committing the dataset or a serialized model file to the repository.
-
-A public hosted application link will be added after the Streamlit Community Cloud deployment is completed.
 
 ## Dataset
 
@@ -55,7 +73,7 @@ python -m venv .venv
 
 Activate the environment:
 
-- Windows PowerShell: `.\.venv\Scripts\Activate.ps1`
+- Windows PowerShell: `.\\.venv\\Scripts\\Activate.ps1`
 - macOS/Linux: `source .venv/bin/activate`
 
 Install dependencies:
@@ -90,11 +108,6 @@ python -m src.predict --input data/new_customers.csv --output reports/prediction
 ```
 
 The input CSV should contain the same original customer feature columns as the training dataset (the `Churn` target is not required). The `customerID` column is optional and is ignored.
-
-## Run predictions
-
-The Streamlit interface above supports interactive batch predictions. For command-line predictions, use:
-
 
 ## Generated outputs
 
