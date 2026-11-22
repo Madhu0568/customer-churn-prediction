@@ -29,15 +29,17 @@ customer-churn-prediction/
 
 ## Streamlit application
 
-I built an interactive Streamlit interface for using the trained churn prediction model. Users can upload a CSV containing customer records, view the predicted churn status and churn probability for each customer, review a summary of the predictions, and download the results as a CSV file.
+The project includes an interactive Streamlit interface. Users can upload a CSV of telecom customer records, view the predicted churn status and churn probability for each customer, review a prediction summary, and download the results as a CSV file.
 
-The application is available locally through Streamlit after the model has been trained:
+Run the application locally:
 
 ```bash
 streamlit run app.py
 ```
 
-A hosted demo link will be added here once the application is deployed.
+If the trained model is not present, the application downloads the public IBM Telco sample dataset and trains the model automatically on first startup. This allows a fresh deployment to start without committing the dataset or a serialized model file to the repository.
+
+A public hosted application link will be added after the Streamlit Community Cloud deployment is completed.
 
 ## Dataset
 
@@ -89,15 +91,10 @@ python -m src.predict --input data/new_customers.csv --output reports/prediction
 
 The input CSV should contain the same original customer feature columns as the training dataset (the `Churn` target is not required). The `customerID` column is optional and is ignored.
 
-## Optional Streamlit app
+## Run predictions
 
-After training the model:
+The Streamlit interface above supports interactive batch predictions. For command-line predictions, use:
 
-```bash
-streamlit run app.py
-```
-
-Upload a CSV of customer records to view churn predictions and probabilities, then download the results.
 
 ## Generated outputs
 
