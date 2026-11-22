@@ -23,6 +23,20 @@ customer-churn-prediction/
 └── README.md
 ```
 
+
+## Live prediction app
+
+The interactive app is built with Streamlit. GitHub Pages cannot host a Python/Streamlit application directly, so deploy this repository to **Streamlit Community Cloud**.
+
+[![Deploy to Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=Madhu0568/customer-churn-prediction&branch=main&mainModule=app.py)
+
+1. Sign in to [Streamlit Community Cloud](https://share.streamlit.io/) with your GitHub account.
+2. Select this repository, branch `main`, and app file `app.py`.
+3. Click **Deploy**. Streamlit will provide a public app URL.
+4. Once deployed, add that URL to the **Live app** link at the top of this README so visitors can open the predictor directly.
+
+> The app needs a trained model at `models/churn_model.joblib`. The model file is excluded from Git by `.gitignore`; deployment setup will be completed after the dataset is added and the model-generation flow is configured.
+
 ## Dataset
 
 This project uses the IBM Telco Customer Churn dataset. Download the CSV (commonly named `WA_Fn-UseC_-Telco-Customer-Churn.csv`) and place it in the `data/` directory. The data file is intentionally not committed to this repository; see [data/README.md](data/README.md) for details.
