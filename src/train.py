@@ -11,7 +11,6 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.impute import SimpleImputer
@@ -28,25 +27,9 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.tree import DecisionTreeClassifier
 
 from .data_preprocessing import TARGET, load_dataset, inspect_dataset
+from .custom_transformers import IQRCapper
 
 ROOT = Path(__file__).resolve().parents[1]
-
-
-class IQRCapper(BaseEstimator, TransformerMixin):
-    """Cap numeric outliers at training-fold IQR bounds."""
-
-    def fit(self, X, y=None):
-        values = np.asarray(X, dtype=float)
-        q1 = np.percentile(values, 25, axis=0)
-        q3 = np.percentile(values, 75, axis=0)
-        iqr = q3 - q1
-        self.lower_bounds_ = q1 - 1.5 * iqr
-        self.upper_bounds_ = q3 + 1.5 * iqr
-        return self
-
-    def transform(self, X):
-        values = np.asarray(X, dtype=float)
-        return np.clip(values, self.lower_bounds_, self.upper_bounds_)
 
 
 def build_preprocessor(X: pd.DataFrame) -> ColumnTransformer:
