@@ -14,9 +14,12 @@ customer-churn-prediction/
 │   └── .gitkeep
 ├── src/
 │   ├── __init__.py
+│   ├── custom_transformers.py
 │   ├── data_preprocessing.py
+│   ├── eda.py
+│   ├── predict.py
 │   ├── train.py
-│   └── predict.py
+│   └── visualize.py
 ├── app.py
 ├── requirements.txt
 ├── .gitignore
@@ -24,18 +27,17 @@ customer-churn-prediction/
 ```
 
 
-## Live prediction app
+## Streamlit application
 
-The interactive app is built with Streamlit. GitHub Pages cannot host a Python/Streamlit application directly, so deploy this repository to **Streamlit Community Cloud**.
+I built an interactive Streamlit interface for using the trained churn prediction model. Users can upload a CSV containing customer records, view the predicted churn status and churn probability for each customer, review a summary of the predictions, and download the results as a CSV file.
 
-[![Deploy to Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=Madhu0568/customer-churn-prediction&branch=main&mainModule=app.py)
+The application is available locally through Streamlit after the model has been trained:
 
-1. Sign in to [Streamlit Community Cloud](https://share.streamlit.io/) with your GitHub account.
-2. Select this repository, branch `main`, and app file `app.py`.
-3. Click **Deploy**. Streamlit will provide a public app URL.
-4. Once deployed, add that URL to the **Live app** link at the top of this README so visitors can open the predictor directly.
+```bash
+streamlit run app.py
+```
 
-> The app needs a trained model at `models/churn_model.joblib`. The model file is excluded from Git by `.gitignore`; deployment setup will be completed after the dataset is added and the model-generation flow is configured.
+A hosted demo link will be added here once the application is deployed.
 
 ## Dataset
 
